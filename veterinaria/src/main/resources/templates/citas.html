@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agendamiento de Citas</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <h1>Agendar Cita Médica</h1>
+
+    <form th:action="@{/citas}" method="post">
+        <div><label>Fecha: <input type="date" name="fecha" required /></label></div>
+        <div><label>Hora: <input type="time" name="hora" required /></label></div>
+        <div><label>Motivo de Consulta: <input type="text" name="motivo_consulta" required /></label></div>
+        <div><label>Veterinario Asignado: <input type="text" name="veterinario" required /></label></div>
+        <button type="submit">Agendar Cita</button>
+    </form>
+
+    <h2>Citas Agendadas</h2>
+    <table border="1" style="margin: 0 auto;">
+        <thead>
+            <tr><th>Fecha</th><th>Hora</th><th>Motivo</th><th>Veterinario</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${citas}">
+                <td th:text="${c.fecha}"></td>
+                <td th:text="${c.hora}"></td>
+                <td th:text="${c.motivo_consulta}"></td>
+                <td th:text="${c.veterinario}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><a href="/home">Volver al Inicio</a>
+</body>
+</html>
